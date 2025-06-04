@@ -1,4 +1,5 @@
 ﻿using PS3Sharp.Interfaces;
+using PS3Sharp.Types;
 using PS3Sharp.Utils;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -12,7 +13,7 @@ namespace PS3Sharp.Backends
         private IntPtr _handle;
         private string _windowName;
 
-        public string Name => "RPCS3";
+        public BackendType Type => BackendType.RPCS3;
         public bool IsConnected { get; private set; }
 
         // winapi imports
@@ -30,10 +31,7 @@ namespace PS3Sharp.Backends
 
         private const int PROCESS_ALL_ACCESS = 0x1F0FFF;
 
-        public RPCS3Backend(string WindowName = "rpcs3")
-        {
-            _windowName = WindowName;
-        }
+        public RPCS3Backend(string WindowName = "rpcs3") => _windowName = WindowName;
 
         public bool Connect()
         {

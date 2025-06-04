@@ -6,13 +6,13 @@ namespace PS3Sharp.Tests
 {
     public class PS3BackendTests
     {
-        private PS3Sharp _ps3;
+        private PS3Client _ps3;
         private IPS3API _backend;
         private uint _testAddress;
 
         public PS3BackendTests()
         {
-            _ps3 = new PS3Sharp(BackendType.PS3);
+            _ps3 = new PS3Client(BackendType.PS3);
             _backend = _ps3.Backend;
             _testAddress = 0xC0000000;
         }

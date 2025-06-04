@@ -1,12 +1,13 @@
 ﻿using PS3Lib;
 using PS3Sharp.Interfaces;
+using PS3Sharp.Types;
 
 namespace PS3Sharp.Backends
 {
     public class PS3Backend : IPS3API
     {
         private PS3API _ps3;
-        public string Name => "PS3";
+        public BackendType Type => BackendType.PS3;
         public bool IsConnected { get; private set; }
 
         public PS3Backend(SelectAPI API = SelectAPI.TargetManager)

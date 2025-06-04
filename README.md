@@ -27,7 +27,7 @@ Currently, PS3Sharp is not published as a NuGet package. To use it, clone the re
 ```csharp
 using PS3Sharp;
 
-var ps3 = new PS3Sharp(BackendType.RPCS3);
+var ps3 = new PS3Client(BackendType.RPCS3);
 
 // connect to the backend
 if (ps3.Backend.Connect())
@@ -44,18 +44,17 @@ if (ps3.Backend.Connect())
 
     ps3.Backend.Disconnect();
 }
+
 else
-{
     Console.WriteLine("Failed to connect.");
-}
 ```
 
 ---
 
 ## Backends
 
-- **PS3Backend** — Connects to a physical PS3 console using PS3Lib.
-- **RPCS3Backend** — Connects to the RPCS3 emulator process.
+- **PS3Backend**   - Connects to a physical PS3 console using PS3Lib.
+- **RPCS3Backend** - Connects to the RPCS3 emulator process.
 
 ---
 

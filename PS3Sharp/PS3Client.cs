@@ -8,17 +8,14 @@ namespace PS3Sharp
     /// Manages the connection and interaction with a PS3 backend (RPCS3, PS3, etc.).
     /// Allows switching backend implementations at runtime.
     /// </summary>
-    public class PS3Sharp
+    public class PS3Client
     {
         private IPS3API _backend;
 
         public IPS3API Backend => _backend!;
         public BackendType ActiveBackendType { get; private set; }
 
-        public PS3Sharp(BackendType backendType = BackendType.RPCS3)
-        {
-            SelectBackend(backendType);
-        }
+        public PS3Client(BackendType backendType = BackendType.RPCS3) => SelectBackend(backendType);
 
         /// <summary>
         /// Selects the backend implementation to use for PS3 communication.
@@ -59,11 +56,6 @@ namespace PS3Sharp
 
             _backend.Disconnect();
         }
-
-        /// <summary>
-        /// The name of the currently active backend.
-        /// </summary>
-        public string ActiveBackend => _backend?.Name ?? "None";
 
         /// <summary>
         /// Whether the current backend is connected.

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PS3Sharp.Types;
 
 namespace PS3Sharp.Interfaces
 {
     public interface IPS3API
     {
-        string Name { get; }
+        BackendType Type { get; }
         bool Connect();
         void Disconnect();
         bool IsConnected { get; }
