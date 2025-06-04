@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PS3Sharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61c925b3be0e9e742839f86cc150779cf1cffa71")]
 [assembly: System.Reflection.AssemblyProductAttribute("PS3Sharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PS3Sharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

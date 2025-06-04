@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace PS3Sharp.Interfaces
 {
-    internal interface IPS3API
+    public interface IPS3API
     {
+        string Name { get; }
+        bool Connect();
+        void Disconnect();
+
+        byte[] ReadMemory(uint address, int length);
+        bool WriteMemory(uint address, byte[] data);
+
+        bool IsConnected { get; }
     }
 }

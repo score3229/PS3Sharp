@@ -1,1 +1,42 @@
+## Build results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## VS Code / Rider
+.vscode/
+.idea/
+
+## Visual Studio files
 .vs/
+
+## NuGet
+*.nupkg
+packages/
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+## Others
+_ReSharper*/
+*.dbmdl
+*.log
+
+## Publish output
+publish/
+*.publish.xml
+
+## dotCover
+*.dotCover
+
+## Debug/Release folders inside any directory
+**/Debug/
+**/Release/
