@@ -12,27 +12,66 @@ namespace PS3Sharp
     {
         private IPS3API _backend;
 
+        /// <summary>
+        /// Gets the currently active backend type.
+        /// </summary>
         public BackendType ActiveBackendType { get; private set; }
 
-        public PS3Client(BackendType backendType = BackendType.RPCS3) => SelectBackend(backendType);
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PS3Client"/> class using the default RPCS3 backend.
+        /// </summary>
+        public PS3Client() => SelectBackend();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PS3Client"/> class using the PS3 backend and specified API (CCAPI/TMAPI).
+        /// </summary>
+        /// <param name="PS3API">The API to use for the PS3 backend.</param>
+        public PS3Client(PS3Type PS3API) => SelectBackend(PS3API);
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PS3Client"/> class using the RPCS3 backend with a custom window name.
+        /// </summary>
+        /// <param name="WindowName">The window name of the RPCS3 process to target.</param>
+        public PS3Client(string WindowName) => Selectbackend(WindowName);
+
+        /// <summary>
+        /// Selects the default RPCS3 backend with the default window name ("rpcs3").
+        /// </summary>
+        public void SelectBackend() => SelectBackendInternal(BackendType.RPCS3, PS3Type.TMAPI, "rpcs3");
+
+        /// <summary>
+        /// Selects the PS3 backend with the specified API (CCAPI or TMAPI).
+        /// </summary>
+        /// <param name="PS3API">The API to use for PS3 communication.</param>
+        public void SelectBackend(PS3Type PS3API) => SelectBackendInternal(BackendType.PS3, PS3API, "rpcs3");
+
+        /// <summary>
+        /// Selects the RPCS3 backend with a custom window name.
+        /// </summary>
+        /// <param name="WindowName">The window name of the RPCS3 process to attach to.</param>
+        public void Selectbackend(string WindowName) => SelectBackendInternal(BackendType.RPCS3, PS3Type.TMAPI, WindowName);
+
 
         /// <summary>
         /// Selects the backend implementation to use for PS3 communication.
         /// Disconnects the current backend if connected, then switches to the new backend.
         /// </summary>
-        public void SelectBackend(BackendType backendType)
+        /// <param name="BackendType">The type of backend to use.</param>
+        /// <param name="PS3API">The PS3 API to use (only relevant for PS3 backend).</param>
+        /// <param name="RPCS3WindowName">The window name to use for RPCS3 backend.</param>
+        private void SelectBackendInternal(BackendType BackendType, PS3Type PS3API, string RPCS3WindowName)
         {
             if (_backend != null && _backend.IsConnected)
                 _backend.Disconnect();
 
-            _backend = backendType switch
+            _backend = BackendType switch
             {
-                BackendType.PS3 => new PS3Backend(),
-                BackendType.RPCS3 => new RPCS3Backend(),
+                BackendType.PS3 => new PS3Backend(PS3API),
+                BackendType.RPCS3 => new RPCS3Backend(RPCS3WindowName),
                 _ => throw new NotImplementedException(),
             };
 
-            ActiveBackendType = backendType;
+            ActiveBackendType = BackendType;
         }
 
         #region Backend Wrappers

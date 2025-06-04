@@ -10,20 +10,20 @@ namespace PS3Sharp.Backends
         public BackendType Type => BackendType.PS3;
         public bool IsConnected { get; private set; }
 
-        public PS3Backend(SelectAPI API = SelectAPI.TargetManager)
+        public PS3Backend(PS3Type API = PS3Type.TMAPI)
         {
-            _ps3 = new PS3API(API);
+            _ps3 = new PS3API((SelectAPI)API);
         }
 
         public bool Connect()
         {
             try
             {
-                IsConnected = _ps3.ConnectTarget();
+                IsConnected = _ps3.ConnectTarget() && _ps3.AttachProcess();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[PS3] - Failed to connect: {ex.Message}");
+                Console.WriteLine($"[PS3] - Failed to connect or attach: {ex.Message}");
                 IsConnected = false;
             }
 

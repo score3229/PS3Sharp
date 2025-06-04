@@ -1,6 +1,4 @@
-﻿using PS3Sharp.Types;
-
-namespace PS3Sharp.Tests
+﻿namespace PS3Sharp.Tests
 {
     public class RPCS3BackendTests
     {
@@ -9,7 +7,7 @@ namespace PS3Sharp.Tests
 
         public RPCS3BackendTests()
         {
-            _ps3 = new PS3Client(BackendType.RPCS3);
+            _ps3 = new PS3Client("rpcs3");
             _testAddress = 0xC0000000;
         }
 
