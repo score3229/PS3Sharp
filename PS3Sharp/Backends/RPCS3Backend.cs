@@ -65,7 +65,13 @@ namespace PS3Sharp.Backends
 
         private byte[] ReadMemory(uint address, int length)
         {
-            ulong addressEmulator = (ulong)address + 0x300000000;
+            ulong addressEmulator;
+
+            if (address < 0x00700000)
+                addressEmulator = (ulong)address + 0x400000000;
+            else
+                addressEmulator = (ulong)address + 0x300000000;
+            
             byte[] buffer = new byte[length];
             ReadProcessMemory(_handle, (IntPtr)addressEmulator, buffer, buffer.Length, out _);
             return buffer;
@@ -73,7 +79,13 @@ namespace PS3Sharp.Backends
 
         private void WriteMemory(uint address, byte[] data)
         {
-            ulong addressEmulator = (ulong)address + 0x300000000;
+            ulong addressEmulator;
+
+            if (address < 0x00700000)
+                addressEmulator = (ulong)address + 0x400000000;
+            else
+                addressEmulator = (ulong)address + 0x300000000;
+
             WriteProcessMemory(_handle, (IntPtr)addressEmulator, data, data.Length, out _);
         }
 
