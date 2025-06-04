@@ -16,7 +16,7 @@ namespace PS3Sharp.Backends
         public bool IsConnected { get; private set; }
 
         // winapi imports
-        [DllImport("kernal32.dll")]
+        [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]

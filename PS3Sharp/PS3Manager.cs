@@ -21,8 +21,6 @@ namespace PS3Sharp
 
         public bool Connect() => _backend?.Connect() ?? false;
         public void Disconnect() => _backend?.Disconnect();
-        public byte[]? ReadMemory(uint address, int length) => _backend?.ReadMemory(address, length);
-        public bool WriteMemory(uint address, byte[] data) => _backend?.WriteMemory(address, data) ?? false;
 
         public string ActiveBackend => _backend?.Name ?? "None";
         public bool IsConnected => _backend?.IsConnected ?? false;
