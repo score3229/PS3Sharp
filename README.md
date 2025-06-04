@@ -30,19 +30,19 @@ using PS3Sharp;
 var ps3 = new PS3Client(BackendType.RPCS3);
 
 // connect to the backend
-if (ps3.Backend.Connect())
+if (ps3.Connect())
 {
     Console.WriteLine($"Connected to: {ps3.ActiveBackendType}");
 
     // read an integer from memory
     uint address = 0xC0000000;
-    int value = ps3.Backend.ReadInt32(address);
+    int value = ps3.ReadInt32(address);
     Console.WriteLine($"Value at {address:X}: {value}");
 
     // write an integer to memory
-    ps3.Backend.WriteInt32(address, 12345);
+    ps3.WriteInt32(address, 12345);
 
-    ps3.Backend.Disconnect();
+    ps3.Disconnect();
 }
 
 else
