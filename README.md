@@ -30,7 +30,7 @@ using PS3Sharp;
 var ps3 = new PS3Sharp(BackendType.RPCS3);
 
 // connect to the backend
-if(ps3.Backend.Connect())
+if (ps3.Backend.Connect())
 {
     Console.WriteLine($"Connected to: {ps3.ActiveBackendType}");
 
