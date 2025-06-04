@@ -24,8 +24,22 @@
   </ItemGroup>
 
   <Target Name="RunILRepack" AfterTargets="Build">
-    <Message Text="Merging PS3Sharp.dll and PS3Lib.dll..." Importance="high" />
-    <ILRepack OutputFile="$(OutputPath)PS3Sharp.Merged.dll" InputAssemblies="$(OutputPath)PS3Sharp.dll;$(OutputPath)PS3Lib.dll" Internalize="true" TargetKind="SameAsPrimaryAssembly" DebugInfo="true" Parallel="true" />
+    <PropertyGroup>
+      <MergedOutputDir>$(OutputPath)Merged\</MergedOutputDir>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(MergedOutputDir)" />
+
+    <Message Text="Merging PS3Sharp.dll and PS3Lib.dll into PS3Sharp.Merged.dll..." Importance="high" />
+
+    <ILRepack
+      OutputFile="$(MergedOutputDir)PS3Sharp.Merged.dll"
+      InputAssemblies="$(OutputPath)PS3Sharp.dll;$(OutputPath)PS3Lib.dll"
+      Internalize="true"
+      TargetKind="SameAsPrimaryAssembly"
+      DebugInfo="true"
+      Parallel="true" />
   </Target>
+
 
 </Project>
