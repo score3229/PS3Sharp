@@ -24,10 +24,39 @@ Currently, PS3Sharp is not published as a NuGet package. To use it, clone the re
 
 ## Usage
 
+### RPCS3
+
 ```csharp
 using PS3Sharp;
 
-var ps3 = new PS3Client(BackendType.RPCS3);
+var rpcs3 = new PS3Client("rpcs3"); // optional: pass custom window title
+
+// connect to the backend
+if (rpcs3.Connect())
+{
+    Console.WriteLine($"Connected to: {rpcs3.ActiveBackendType}");
+
+    // read an integer from memory
+    uint address = 0xC0000000;
+    int value = rpcs3.ReadInt32(address);
+    Console.WriteLine($"Value at {address:X}: {value}");
+
+    // write an integer to memory
+    rpcs3.WriteInt32(address, 12345);
+    rpcs3.Disconnect();
+}
+
+else
+    Console.WriteLine("Failed to connect.");
+```
+
+### PS3 (TMAPI / CCAPI)
+
+```csharp
+using PS3Sharp;
+using PS3Sharp.Types;
+
+var ps3 = new PS3Client(PS3Type.TMAPI); // or PS3Type.CCAPI
 
 // connect to the backend
 if (ps3.Connect())
@@ -41,7 +70,6 @@ if (ps3.Connect())
 
     // write an integer to memory
     ps3.WriteInt32(address, 12345);
-
     ps3.Disconnect();
 }
 
