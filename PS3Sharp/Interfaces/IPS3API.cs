@@ -13,11 +13,7 @@ namespace PS3Sharp.Interfaces
         void Disconnect();
         bool IsConnected { get; }
 
-        // basic memory access
-        // byte[] ReadMemory(uint address, int length);
-        // void WriteMemory(uint address, byte[] data);
-
-        // typed memory reads
+        // memory reads
         sbyte ReadSByte(uint address);
         byte ReadByte(uint address);
         byte[] ReadBytes(uint address, int length);
@@ -32,7 +28,7 @@ namespace PS3Sharp.Interfaces
         double ReadDouble(uint address);
         string ReadString(uint address);
 
-        // typed memory writes
+        // memory writes
         void WriteSByte(uint address, sbyte value);
         void WriteByte(uint address, byte value);
         void WriteBytes(uint address, byte[] value);

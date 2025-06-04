@@ -9,7 +9,7 @@ namespace PS3Sharp.Backends
         public string Name => "PS3";
         public bool IsConnected { get; private set; }
 
-        public PS3Backend(SelectAPI API)
+        public PS3Backend(SelectAPI API = SelectAPI.TargetManager)
         {
             _ps3 = new PS3API(API);
         }
