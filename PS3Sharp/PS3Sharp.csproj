@@ -7,6 +7,18 @@
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;x64</Platforms>
     <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>PS3Sharp</AssemblyName>
+    <Version>1.1.1</Version>
+    <FileVersion>1.1.1.0</FileVersion>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <InformationalVersion>v1.1.1</InformationalVersion>
+    <Authors>Mack Core</Authors>
+    <Company>Mack Core</Company>
+    <Product>PS3Sharp</Product>
+    <Description>
+      PS3Sharp is a .NET library for reading and writing memory directly from PlayStation 3 (PS3) consoles and the RPCS3 emulator. It offers easy-to-use backends to interact with PS3 memory, making it ideal for tooling, debugging, and modding projects targeting both PS3 hardware and the RPCS3 emulator.
+    </Description>
+    <PackageProjectUrl>https://github.com/score3229/PS3Sharp</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,26 +31,14 @@
   <ItemGroup>
     <Reference Include="PS3Lib">
       <HintPath>Libs\PS3Lib.dll</HintPath>
-      <Private>true</Private>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
-
+  
   <Target Name="RunILRepack" AfterTargets="Build">
-    <PropertyGroup>
-      <MergedOutputDir>$(OutputPath)Merged\</MergedOutputDir>
-    </PropertyGroup>
+    <Message Text="Merging PS3Sharp.dll and PS3Lib.dll into PS3Sharp.dll..." Importance="high" />
 
-    <MakeDir Directories="$(MergedOutputDir)" />
-
-    <Message Text="Merging PS3Sharp.dll and PS3Lib.dll into PS3Sharp.Merged.dll..." Importance="high" />
-
-    <ILRepack
-      OutputFile="$(MergedOutputDir)PS3Sharp.Merged.dll"
-      InputAssemblies="$(OutputPath)PS3Sharp.dll;$(OutputPath)PS3Lib.dll"
-      Internalize="true"
-      TargetKind="SameAsPrimaryAssembly"
-      DebugInfo="true"
-      Parallel="true" />
+    <ILRepack OutputFile="$(OutputPath)PS3Sharp.dll" InputAssemblies="$(OutputPath)PS3Sharp.dll;Libs\PS3Lib.dll" Internalize="true" TargetKind="SameAsPrimaryAssembly" DebugInfo="true" Parallel="true" />
   </Target>
 
 

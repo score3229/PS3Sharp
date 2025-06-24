@@ -51,7 +51,6 @@ namespace PS3Sharp
         /// <param name="WindowName">The window name of the RPCS3 process to attach to.</param>
         public void Selectbackend(string WindowName) => SelectBackendInternal(BackendType.RPCS3, PS3Type.TMAPI, WindowName);
 
-
         /// <summary>
         /// Selects the backend implementation to use for PS3 communication.
         /// Disconnects the current backend if connected, then switches to the new backend.

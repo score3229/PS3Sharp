@@ -67,7 +67,7 @@ namespace PS3Sharp.Backends
         {
             ulong addressEmulator;
 
-            if (address < 0x00700000)
+            if (address < 0x00792000)
                 addressEmulator = (ulong)address + 0x400000000;
             else
                 addressEmulator = (ulong)address + 0x300000000;
@@ -81,7 +81,7 @@ namespace PS3Sharp.Backends
         {
             ulong addressEmulator;
 
-            if (address < 0x00700000)
+            if (address < 0x00792000)
                 addressEmulator = (ulong)address + 0x400000000;
             else
                 addressEmulator = (ulong)address + 0x300000000;
