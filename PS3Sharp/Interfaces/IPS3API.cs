@@ -10,6 +10,7 @@ namespace PS3Sharp.Interfaces
         bool IsConnected { get; }
 
         // memory reads
+        bool ReadBit(uint address, int offset);
         sbyte ReadSByte(uint address);
         byte ReadByte(uint address);
         byte[] ReadBytes(uint address, int length);
@@ -25,6 +26,7 @@ namespace PS3Sharp.Interfaces
         string ReadString(uint address);
 
         // memory writes
+        void WriteBit(uint address, int offset, bool state);
         void WriteSByte(uint address, sbyte value);
         void WriteByte(uint address, byte value);
         void WriteBytes(uint address, byte[] value);

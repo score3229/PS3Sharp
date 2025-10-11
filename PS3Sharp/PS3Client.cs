@@ -94,6 +94,14 @@ namespace PS3Sharp
         // Memory Reads
 
         /// <summary>
+        /// Reads a single bit from the specified memory address and bit offset.
+        /// </summary>
+        /// <param name="address">The memory address to read from.</param>
+        /// <param name="offset">The bit offset (0–7) within the byte to read.</param>
+        /// <returns><see langword="true"/> if the bit is set; otherwise, <see langword="false"/>.</returns>
+        public bool ReadBit(uint address, int offset) => _backend.ReadBit(address, offset);
+
+        /// <summary>
         /// Reads a signed byte (sbyte) from the specified memory address.
         /// </summary>
         /// <param name="address">The memory address to read from.</param>
@@ -187,6 +195,14 @@ namespace PS3Sharp
 
 
         // Memory Writes
+
+        /// <summary>
+        /// Writes a single bit to the specified memory address and bit offset.
+        /// </summary>
+        /// <param name="address">The memory address to write to.</param>
+        /// <param name="offset">The bit offset (0–7) within the byte to write.</param>
+        /// <param name="state"><see langword="true"/> to set the bit; <see langword="false"/> to clear it.</param>
+        public void WriteBit(uint address, int offset, bool state) => _backend.WriteBit(address, offset, state);
 
         /// <summary>
         /// Writes a signed byte (sbyte) to the specified memory address.

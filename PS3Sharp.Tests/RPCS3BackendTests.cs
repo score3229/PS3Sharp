@@ -35,6 +35,24 @@
         }
 
         [Fact]
+        public void WriteAndReadBit_ShouldReturnExpectedValue()
+        {
+            // arrange
+            _ps3.Connect();
+
+            // setup
+            bool expectedValue = true;
+            int _testOffset = 3;
+            _ps3.WriteBit(_testAddress, _testOffset, expectedValue);
+
+            // act
+            bool actualValue = _ps3.ReadBit(_testAddress, _testOffset);
+
+            // assert
+            Assert.Equal(expectedValue, actualValue);
+        }
+
+        [Fact]
         public void WriteAndReadSByte_ShouldReturnExpectedValue()
         {
             // arrange
