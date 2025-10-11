@@ -90,6 +90,12 @@ namespace PS3Sharp.Backends
         }
 
         // typed memory reads
+        public bool ReadBit(uint address, int offset)
+        {
+
+            byte value = ReadMemory(address, 1)[0];
+            return (value & (1 << offset)) != 0;
+        }
         public sbyte ReadSByte(uint address) => (sbyte)ReadMemory(address, 1)[0];
         public byte ReadByte(uint address) => ReadMemory(address, 1)[0];
         public byte[] ReadBytes(uint address, int length) => ReadMemory(address, length);
@@ -131,6 +137,17 @@ namespace PS3Sharp.Backends
         }
 
         // typed memory writes
+        public void WriteBit(uint address, int offset, bool state)
+        {
+            byte value = ReadMemory(address, 1)[0];
+
+            if (state)
+                value |= (byte)(1 << offset);
+            else
+                value &= (byte)~(1 << offset);
+
+            WriteMemory(address, new byte[] { value });
+        }
         public void WriteSByte(uint address, sbyte value) => WriteMemory(address, new byte[] { (byte)value });
         public void WriteByte(uint address, byte value) => WriteMemory(address, new byte[] { value });
         public void WriteBytes(uint address, byte[] value) => WriteMemory(address, value);

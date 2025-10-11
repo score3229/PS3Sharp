@@ -44,6 +44,11 @@ namespace PS3Sharp.Backends
         private void WriteMemory(uint address, byte[] data) => _ps3.SetMemory(address, data);
 
         // typed memory reads
+        public bool ReadBit(uint address, int offset)
+        {
+            byte value = _ps3.Extension.ReadByte(address);
+            return (value & (1 << offset)) != 0;
+        }
         public sbyte ReadSByte(uint address) => _ps3.Extension.ReadSByte(address);
         public byte ReadByte(uint address) => _ps3.Extension.ReadByte(address);
         public byte[] ReadBytes(uint address, int length) => _ps3.Extension.ReadBytes(address, length);
@@ -59,6 +64,17 @@ namespace PS3Sharp.Backends
         public string ReadString(uint address) => _ps3.Extension.ReadString(address);
 
         // typed memory writes
+        public void WriteBit(uint address, int offset, bool state)
+        {
+            byte value = _ps3.Extension.ReadByte(address);
+
+            if (state)
+                value |= (byte)(1 << offset);
+            else
+                value &= (byte)~(1 << offset);
+
+            _ps3.Extension.WriteByte(address, value);
+        }
         public void WriteSByte(uint address, sbyte value) => _ps3.Extension.WriteSByte(address, value);
         public void WriteByte(uint address, byte value) => _ps3.Extension.WriteByte(address, value);
         public void WriteBytes(uint address, byte[] value) => _ps3.Extension.WriteBytes(address, value);
