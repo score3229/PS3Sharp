@@ -2,9 +2,10 @@
 
 namespace PS3Sharp.Interfaces
 {
-    public interface IPS3API
+    public interface IPS3API : IDisposable
     {
         BackendType Type { get; }
+
         bool Connect();
         void Disconnect();
         bool IsConnected { get; }
@@ -40,6 +41,20 @@ namespace PS3Sharp.Interfaces
         void WriteSingle(uint address, float value);
         void WriteDouble(uint address, double value);
         void WriteString(uint address, string value);
+
+        // enum
+        T ReadEnum<T>(uint address) where T : struct, Enum;
+        void WriteEnum<T>(uint address, T value) where T : struct, Enum;
+
+        // struct
+        T ReadStruct<T>(uint address) where T : struct;
+        void WriteStruct<T>(uint address, T value) where T : struct;
+
+        // vector
+        Vector3 ReadVector3(uint address);
+        void WriteVector3(uint address, Vector3 value);
+        Vector4 ReadVector4(uint address);
+        void WriteVector4(uint address, Vector4 value);
 
         // pointer
         uint GetPointer(uint address, params int[] offsets);

@@ -1,4 +1,4 @@
-﻿namespace PS3Sharp.Tests
+namespace PS3Sharp.Tests
 {
     public class RPCS3BackendTests
     {

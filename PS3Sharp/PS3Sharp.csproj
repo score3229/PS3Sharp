@@ -1,59 +1,35 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <UseAppHost>false</UseAppHost>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Platforms>AnyCPU;x64</Platforms>
-    <PlatformTarget>x64</PlatformTarget>
-    
+    <Platforms>AnyCPU;x64;x86</Platforms>
+
     <AssemblyName>PS3Sharp</AssemblyName>
-    <Version>1.1.4</Version>
-    <FileVersion>1.1.4.0</FileVersion>
-    <AssemblyVersion>1.1.4.0</AssemblyVersion>
-    <InformationalVersion>v1.1.4</InformationalVersion>
-    
+    <Version>2.0.0</Version>
+    <FileVersion>2.0.0.0</FileVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <InformationalVersion>v2.0.0</InformationalVersion>
+
     <Authors>Mack Core</Authors>
     <Company>Mack Core</Company>
     <Product>PS3Sharp</Product>
     <Description>
-      PS3Sharp is a .NET library for reading and writing memory directly from PlayStation 3 (PS3) consoles and the RPCS3 emulator. It offers easy-to-use backends to interact with PS3 memory, making it ideal for tooling, debugging, and modding projects targeting both PS3 hardware and the RPCS3 emulator.
+      PS3Sharp is a cross-platform .NET library for reading and writing memory on PlayStation 3 (PS3) consoles and the RPCS3 emulator. Supports TMAPI (DEX), CCAPI (CEX/DEX), PS3MAPI (CEX/DEX via webMAN), and RPCS3 — no native DLL dependencies for cross-platform backends.
     </Description>
     <PackageProjectUrl>https://github.com/score3229/PS3Sharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/score3229/PS3Sharp</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>ps3;ps3lib;rpcs3;modding;memory;game-hacking;debugging;net</PackageTags>
+    <PackageTags>ps3;rpcs3;tmapi;ccapi;mapi;modding;memory;game-hacking;debugging;cross-platform;net</PackageTags>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.40">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PS3Lib">
-      <HintPath>Libs\PS3Lib.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\README.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE" Pack="true" PackagePath="" />
+    <InternalsVisibleTo Include="PS3Sharp.Tests" />
   </ItemGroup>
-
-  <Target Name="RunILRepack" AfterTargets="Build">
-    <Message Text="Merging PS3Sharp.dll and PS3Lib.dll into PS3Sharp.dll..." Importance="high" />
-    <ILRepack OutputFile="$(OutputPath)PS3Sharp.dll"
-              InputAssemblies="$(OutputPath)PS3Sharp.dll;Libs\PS3Lib.dll"
-              Internalize="true"
-              TargetKind="SameAsPrimaryAssembly"
-              DebugInfo="true"
-              Parallel="true" />
-  </Target>
 
 </Project>

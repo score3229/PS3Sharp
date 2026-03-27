@@ -1,8 +1,10 @@
-﻿namespace PS3Sharp.Types
+namespace PS3Sharp.Types
 {
     public enum BackendType
     {
-        PS3,
+        TMAPI,
+        CCAPI,
+        MAPI,
         RPCS3
     }
 }

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -23,13 +23,6 @@
     <ProjectReference Include="..\PS3Sharp\PS3Sharp.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="PS3Lib">
-      <HintPath>..\PS3Sharp\Libs\PS3Lib.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-  </ItemGroup>
-  
   <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>

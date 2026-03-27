@@ -4,21 +4,46 @@ namespace PS3Sharp.Tests
 {
     public class PS3BackendTests
     {
-        private PS3Client _ccapi;
-        private PS3Client _tampi;
-        private uint _testAddress;
-
-        public PS3BackendTests()
+        [Fact]
+        public void TMAPIClient_RequiresIPAddress()
         {
-            _tampi = new PS3Client(PS3Type.TMAPI);
-            _ccapi = new PS3Client(PS3Type.CCAPI);
-            _testAddress = 0xC0000000;
+            Assert.Throws<ArgumentNullException>(() => new PS3Client(BackendType.TMAPI, null!));
         }
 
         [Fact]
-        public void InitialTest()
+        public void CCAPIClient_RequiresIPAddress()
         {
-            // TODO: Implement memory read/write tests for PS3 (TMAPI/CCAPI)
+            Assert.Throws<ArgumentNullException>(() => new PS3Client(BackendType.CCAPI, null!));
+        }
+
+        [Fact]
+        public void MAPIClient_RequiresIPAddress()
+        {
+            Assert.Throws<ArgumentNullException>(() => new PS3Client(BackendType.MAPI, null!));
+        }
+
+        [Fact]
+        public void RPCS3Client_DefaultProcessName()
+        {
+            var client = new PS3Client();
+            Assert.Equal(BackendType.RPCS3, client.ActiveBackendType);
+        }
+
+        [Fact]
+        public void RPCS3Client_CustomProcessName()
+        {
+            var client = new PS3Client("rpcs3-custom");
+            Assert.Equal(BackendType.RPCS3, client.ActiveBackendType);
+        }
+
+        [Fact]
+        public void SelectBackend_SwitchesType()
+        {
+            var client = new PS3Client();
+            Assert.Equal(BackendType.RPCS3, client.ActiveBackendType);
+
+            client.SelectBackend(BackendType.TMAPI, ipAddress: "10.0.0.1");
+            Assert.Equal(BackendType.TMAPI, client.ActiveBackendType);
         }
     }
 }
